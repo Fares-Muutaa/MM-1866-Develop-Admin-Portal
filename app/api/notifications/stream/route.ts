@@ -1,4 +1,3 @@
-
 import { NextRequest } from 'next/server';
 import { Client } from 'pg';
 export const runtime = 'nodejs'; // 👈 force Node.js environment
@@ -55,4 +54,3 @@ const handler = (msg) => {
     }
   });
 }
-

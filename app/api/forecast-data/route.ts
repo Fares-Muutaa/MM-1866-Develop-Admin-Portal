@@ -2,10 +2,14 @@ import { NextResponse } from "next/server"
 import { db } from "@/lib/db/dbpostgres"
 import { forecastData } from "@/lib/db/schema"
 import { eq, and, asc } from "drizzle-orm"
+import { checkPermission } from "@/lib/casl/middleware"
 
 export async function GET(request: Request) {
+  const permissionCheck = await checkPermission(request, "read", "ForecastData")
+  if (permissionCheck) return permissionCheck
+
   try {
-    if(!request?.url) {
+    if (!request?.url) {
       return NextResponse.json({ error: "Invalid request URL" }, { status: 400 })
     }
     const { searchParams } = new URL(request.url)
@@ -46,6 +50,9 @@ export async function GET(request: Request) {
 }
 
 export async function PUT(request: Request) {
+  const permissionCheck = await checkPermission(request, "update", "ForecastData")
+  if (permissionCheck) return permissionCheck
+
   try {
     const body = await request.json()
     const { productId, forecastTypeId, forecastExecutionId, date, value } = body

@@ -1,4 +1,3 @@
-
 import Image from "next/image"
 import { LoginFormNextAuth } from "@/components/auth/login-form-nextauth"
 import { RegisterForm } from "@/components/auth/register-form"
