@@ -1,4 +1,3 @@
-
 CREATE TABLE "notification_types" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
@@ -48,4 +47,3 @@ CREATE TRIGGER notifications_notify_trigger
 AFTER INSERT ON notifications
 FOR EACH ROW
 EXECUTE FUNCTION notify_new_notification();
-
